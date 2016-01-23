@@ -5,11 +5,14 @@ import urlparse
 import os
 from bs4 import BeautifulSoup
 
-for i in range(1194208, 1194216):
+for i in range(1194201, 1194299):
 
 	# strl ="http://www.sec.gov/Archives/edgar/data/1194251/"
 	strl ="http://www.sec.gov/Archives/edgar/data/" + str(i) + "/"
 	response = requests.get(strl) ## website name
+
+	if (response.status_code == 404):
+		continue
 
 	soup = BeautifulSoup(response.text)
 
