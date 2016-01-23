@@ -5,7 +5,7 @@ import urlparse
 import os
 from bs4 import BeautifulSoup
 
-for i in range(1194201, 1194299):
+for i in range(1193001, 1194500):
 
 	# strl ="http://www.sec.gov/Archives/edgar/data/1194251/"
 	strl ="http://www.sec.gov/Archives/edgar/data/" + str(i) + "/"
@@ -16,7 +16,13 @@ for i in range(1194201, 1194299):
 
 	soup = BeautifulSoup(response.text)
 
-	article_name = (soup.find_all('a'))[6].get('href')
+	list_a = soup.find_all('a')
+	for elem in list_a:
+		if(elem.get('href')[-4:]==".txt"):
+			article_name = elem.get('href')
+			break
+
+	# article_name = (soup.find_all('a'))[6].get('href')
 	article_strl = strl+article_name
 	print(article_strl)
 	article_response = requests.get(article_strl) ## website name

@@ -7,20 +7,26 @@ from bs4 import BeautifulSoup
 
 company_info = ""
 # strl ="http://www.sec.gov/Archives/edgar/data/1194251/"
-strl ="http://www.sec.gov/Archives/edgar/data/1194207	/"
+strl ="http://www.sec.gov/Archives/edgar/data/1193009/"
 response = requests.get(strl) ## website name
-if (response.status_code  == 404):
-	print ("Wohooooooo")
-print("RESPNONSE = ",response)
 
 soup = BeautifulSoup(response.text)
 
 # print(soup)
 
+print(soup.find_all('a'))
+
+list_a = soup.find_all('a')
+for elem in list_a:
+	if(elem.get('href')[-4:]==".txt"):
+		article_name = elem.get('href')
+
+print ("article_name = ", article_name)
+
 # article_name = (soup.find_all('a'))[6].get('href')
-# article_strl = strl+article_name
-# print(article_strl)
-# article_response = requests.get(article_strl) ## website name
+article_strl = strl+article_name
+print(article_strl)
+article_response = requests.get(article_strl) ## website name
 
 # article_string = str(article_response.text)
 # print(type(article_string))
