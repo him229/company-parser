@@ -35,8 +35,10 @@ article_string = str(article_response.text)
 print(type(article_string))
 
 article_list = article_string.split("\n")
-print(article_list)
+# print(article_list)
 company_name_index = article_list.index('\tCOMPANY DATA:\t')
+
+
 company_name_crap = article_list[company_name_index+1]
 company_name_crap_strip =  company_name_crap.strip('\t')
 # company_name = company_name_crap_mod1.strip('COMPANY CONFORMED NAME:')
@@ -47,6 +49,9 @@ company_info = company_info + company_name + ";"
 ###########################################################
 # Insert comany name in a file
 ###########################################################
+
+article_list = article_list[article_list.index('\tCOMPANY DATA:\t') - 1 :]
+print (article_list)
 
 company_address_index = article_list.index('\tBUSINESS ADDRESS:\t')
 
