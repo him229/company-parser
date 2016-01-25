@@ -5,12 +5,14 @@ import urlparse
 import os
 from bs4 import BeautifulSoup
 
+# Add your range for SEC company filings
 for i in range(1193001, 1194500):
 
 	# strl ="http://www.sec.gov/Archives/edgar/data/1194251/"
 	strl ="http://www.sec.gov/Archives/edgar/data/" + str(i) + "/"
 	response = requests.get(strl) ## website name
 
+	# Check for company status error
 	if (response.status_code == 404):
 		continue
 
